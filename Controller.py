@@ -7,41 +7,40 @@ import ButtonFunctions as button
 import time
 
 response = AI.run()
-# response = 'karton/papier'
+# response = 'kga'
 
 TYPES = ['rest', 'pmd', 'karton/papier', 'gft', 'kga']
 
 for type in TYPES:
     if response.lower() == type:
+        print(type)
+        station = 0
+        motor.forwards()
+
         if type == TYPES[0]:
-            print(type)
-            motor.forwards()
-            button.checkStation(1)
-            motor.stop()
+            station = 1
             
         elif type == TYPES[1]:
-            print(type)
-            motor.forwards()
-            button.checkStation(2)
-            motor.stop()
+            station = 2
 
         elif type == TYPES[2]:
-            print(type)
-            motor.forwards()
-            button.checkStation(3)
-            motor.stop()
+            station = 3
 
         elif type == TYPES[3]:
-            print(type)
-            motor.forwards()
-            button.checkStation(4)
-            motor.stop()
+            station = 4
 
         elif type == TYPES[4]:
-            print(type)
-            motor.forwards()
-            button.checkStation(5)
-            motor.stop()
+            station = 5
             
         else:
-            print('ERROR')
+            station = 1
+        
+        button.checkStation(station)
+        motor.stop()
+
+        time.sleep(3)
+        motor.backwards()
+        button.checkStation(station)
+
+        time.sleep(1.5)
+        motor.stop()
