@@ -1,2 +1,6 @@
 .env
 node_modules
+*venv
+*imports
+*__pycache__
+trash.jpg
