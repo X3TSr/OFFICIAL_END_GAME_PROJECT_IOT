@@ -4,6 +4,7 @@ import time
 
 response = AI.run()
 
+# TYPES = ['rest', 'pmd', 'karton/papier', 'gft', 'kga']
 TYPES = ['rest', 'pmd', 'karton/papier', 'gft', 'kga']
 
 for type in TYPES:
