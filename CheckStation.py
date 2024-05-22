@@ -1,9 +1,10 @@
+import LightIndicators as LED
 import gpiod
 import time
 
 CHIP = gpiod.Chip('gpiochip4')
-line = CHIP.get_line(21)
-line.request(consumer="button_script", type=gpiod.LINE_REQ_DIR_IN)
+stationButton_line = CHIP.get_line(21)
+stationButton_line.request(consumer="button_script", type=gpiod.LINE_REQ_DIR_IN)
 
 def checkStation(destinationStation):
     last_value = 0
@@ -13,7 +14,7 @@ def checkStation(destinationStation):
     checking = True
 
     while checking:
-        value = line.get_value()
+        value = stationButton_line.get_value()
         current_time = time.time()
 
         if value == 1 and last_value == 0 and (current_time - last_pressed_time > debounce_ime):
@@ -26,8 +27,11 @@ def checkStation(destinationStation):
         last_value = value
 
 def findStation(response, TYPES):
+    station = -1
     res = response.lower()
     for type in TYPES:
         if res == type:
             station = TYPES.index(type) +1
+    if station == -1:
+        LED.ledBlink()
     return station

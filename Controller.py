@@ -21,8 +21,10 @@ def goTo(destination, sleepTime = 0.0):
     stationChecker.checkStation(station)
     time.sleep(sleepTime)
     motor.stop()
+ 
 
 TrashRemoval.close()
-goTo('station')
-TrashRemoval.disposeTrash()
-goTo('garage', 1.5)
+if station != -1:
+    goTo('station')
+    TrashRemoval.disposeTrash()
+    goTo('garage', 1.5)
