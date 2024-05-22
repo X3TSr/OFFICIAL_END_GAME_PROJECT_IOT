@@ -8,43 +8,21 @@ import TrashRemoval
 import time
 
 # response = AI.run()
-response = 'pmd'
+response = 'gft'
 
 TYPES = ['rest', 'pmd', 'karton/papier', 'gft', 'kga']
+station = stationChecker.findStation(response, TYPES)
 
-def findStation():
-    res = response.lower()
-    if res == TYPES[0]:
-        station = 1
-    elif res == TYPES[1]:
-        station = 2
-    elif res == TYPES[2]:
-        station = 3
-    elif res == TYPES[3]:
-        station = 4
-    elif res == TYPES[4]:
-        station = 5
-    else:
-        station = 1
-    return station
-
-def disposeTrash():
-    time.sleep(1)
-    TrashRemoval.open()
-    time.sleep(3)
-    TrashRemoval.close()
-    time.sleep(1)
-
-station = findStation()
+def goTo(destination, sleepTime = 0.0):
+    if destination == 'station':
+        motor.forwards()
+    elif destination == 'garage':
+        motor.backwards()
+    stationChecker.checkStation(station)
+    time.sleep(sleepTime)
+    motor.stop()
 
 TrashRemoval.close()
-motor.forwards()
-stationChecker.checkStation(station)
-motor.stop()
-
-disposeTrash()
-
-motor.backwards()
-stationChecker.checkStation(station)
-time.sleep(1.5)
-motor.stop()
+goTo('station')
+TrashRemoval.disposeTrash()
+goTo('garage', 1.5)

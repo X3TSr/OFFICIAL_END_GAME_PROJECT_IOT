@@ -5,7 +5,6 @@ CHIP = gpiod.Chip('gpiochip4')
 line = CHIP.get_line(21)
 line.request(consumer="button_script", type=gpiod.LINE_REQ_DIR_IN)
 
-
 def checkStation(destinationStation):
     last_value = 0
     debounce_ime = 0.5
@@ -25,3 +24,10 @@ def checkStation(destinationStation):
                 checking = False
                 # print('STOP')
         last_value = value
+
+def findStation(response, TYPES):
+    res = response.lower()
+    for type in TYPES:
+        if res == type:
+            station = TYPES.index(type) +1
+    return station
