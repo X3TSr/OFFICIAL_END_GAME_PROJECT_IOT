@@ -3,44 +3,48 @@
 
 import MotorFunctions as motor
 import TheAIPartOfThings as AI
-import ButtonFunctions as button
+import CheckStation as stationChecker
+import TrashRemoval
 import time
 
-response = AI.run()
-# response = 'kga'
+# response = AI.run()
+response = 'pmd'
 
 TYPES = ['rest', 'pmd', 'karton/papier', 'gft', 'kga']
 
-for type in TYPES:
-    if response.lower() == type:
-        print(type)
-        station = 0
-        motor.forwards()
+def findStation():
+    res = response.lower()
+    if res == TYPES[0]:
+        station = 1
+    elif res == TYPES[1]:
+        station = 2
+    elif res == TYPES[2]:
+        station = 3
+    elif res == TYPES[3]:
+        station = 4
+    elif res == TYPES[4]:
+        station = 5
+    else:
+        station = 1
+    return station
 
-        if type == TYPES[0]:
-            station = 1
-            
-        elif type == TYPES[1]:
-            station = 2
+def disposeTrash():
+    time.sleep(1)
+    TrashRemoval.open()
+    time.sleep(3)
+    TrashRemoval.close()
+    time.sleep(1)
 
-        elif type == TYPES[2]:
-            station = 3
+station = findStation()
 
-        elif type == TYPES[3]:
-            station = 4
+TrashRemoval.close()
+motor.forwards()
+stationChecker.checkStation(station)
+motor.stop()
 
-        elif type == TYPES[4]:
-            station = 5
-            
-        else:
-            station = 1
-        
-        button.checkStation(station)
-        motor.stop()
+disposeTrash()
 
-        time.sleep(3)
-        motor.backwards()
-        button.checkStation(station)
-
-        time.sleep(1.5)
-        motor.stop()
+motor.backwards()
+stationChecker.checkStation(station)
+time.sleep(1.5)
+motor.stop()
