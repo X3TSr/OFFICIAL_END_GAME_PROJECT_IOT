@@ -23,8 +23,9 @@ def goTo(destination, sleepTime = 0.0):
     motor.stop()
  
 
-TrashRemoval.close()
-if station != -1:
-    goTo('station')
-    TrashRemoval.disposeTrash()
-    goTo('garage', 1.5)
+def start():
+    TrashRemoval.close()
+    if station != -1:
+        goTo('station')
+        TrashRemoval.disposeTrash()
+        goTo('garage', 1.5)

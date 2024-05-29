@@ -1,6 +1,6 @@
 # Pin Info
 ## Start Button
-- 23
+- 20
 ## Station Button
 - 21
 ## Error Light
