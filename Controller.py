@@ -7,13 +7,7 @@ import CheckStation as stationChecker
 import TrashRemoval
 import time
 
-# response = AI.run()
-response = 'gft'
-
-TYPES = ['rest', 'pmd', 'karton/papier', 'gft', 'kga']
-station = stationChecker.findStation(response, TYPES)
-
-def goTo(destination, sleepTime = 0.0):
+def goTo(station, destination, sleepTime = 0.0):
     if destination == 'station':
         motor.forwards()
     elif destination == 'garage':
@@ -24,8 +18,17 @@ def goTo(destination, sleepTime = 0.0):
  
 
 def start():
+    response = AI.run()
+    # response = 'gft'
+
+    print(response)
+
+    TYPES = ['rest', 'pmd', 'karton/papier']
+    station = stationChecker.findStation(response, TYPES)
     TrashRemoval.close()
     if station != -1:
-        goTo('station')
+        goTo(station, 'station')
         TrashRemoval.disposeTrash()
-        goTo('garage', 1.5)
+        goTo(station, 'garage', .5)
+
+# start() # To use when testing with Controller.py NOT WITH Start.py

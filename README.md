@@ -5,6 +5,8 @@
 - 21
 ## Error Light
 - 27
+## Picture Light
+- 22 & 16
 ## Servo Motor
 - 17
 ## Motor - Enable A
@@ -16,6 +18,6 @@
 ## Motor - Enable B
 - 2
 ## Motor - Input 3 (backwards)
-- 3
-## Motor - Input 4 (forwards)
 - 4
+## Motor - Input 4 (forwards)
+- 3

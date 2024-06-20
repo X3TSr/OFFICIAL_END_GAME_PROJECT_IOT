@@ -1,5 +1,6 @@
 import cv2
 import base64
+import LightIndicators
 
 # Function to encode the image
 def encode_image(image_path):
@@ -7,6 +8,7 @@ def encode_image(image_path):
     return base64.b64encode(image_file.read()).decode('utf-8')
 
 def takePic():
+    LightIndicators.PicLight_on()
     cam = cv2.VideoCapture(0)
     ret, image = cam.read()
     cv2.imwrite('trash.jpg', image)
@@ -16,5 +18,6 @@ def takePic():
     
     cam.release()
     cv2.destroyAllWindows()
+    LightIndicators.PicLight_off()
     return img
 takePic()

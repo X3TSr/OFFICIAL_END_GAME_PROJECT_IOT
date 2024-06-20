@@ -16,12 +16,12 @@ def run():
         messages=[
             {
                 "role":"system", 
-                "content":"Sort trash, you have the following options to choose from: GFT, PMD, Karton/Papier, KGA and Rest. You must only reply with the option title, nothing more. Keep in mind you should be sorting following Ilva (Belgium) guidlines"
+                "content":"Sort trash, you have the following options to choose from: PMD, Karton/Papier and Rest. You must only reply with the option title, nothing more. Keep in mind you should be sorting following Ilva (Belgium) guidlines"
             },
             {
                 "role":"user", 
                 "content":[
-                    {'type':'text', 'text':'In what trash disposal should this go? Rest; PMD; Karton/Papier; GFT; KGA'},
+                    {'type':'text', 'text':'In what trash disposal should this go? Rest; PMD; Karton/Papier;'},
                     {
                         'type':'image_url',
                         'image_url':{

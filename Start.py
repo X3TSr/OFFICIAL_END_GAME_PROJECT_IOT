@@ -1,13 +1,18 @@
 import gpiod
 import time
 import Controller
+import LightIndicators
+import TrashRemoval
+
+LightIndicators.PicLight_off()
+TrashRemoval.close()
 
 CHIP = gpiod.Chip('gpiochip4')
 startButton_line = CHIP.get_line(20)
 startButton_line.request(consumer="button_script", type=gpiod.LINE_REQ_DIR_IN)
 
 last_value = 0
-debounce_time = 20
+debounce_time = 0.5
 last_pressed_time = 0
 counter = 0
 
