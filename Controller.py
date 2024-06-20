@@ -23,7 +23,7 @@ def start():
 
     print(response)
 
-    TYPES = ['rest', 'pmd', 'karton/papier']
+    TYPES = ['karton/papier' , 'pmd', 'rest']
     station = stationChecker.findStation(response, TYPES)
     TrashRemoval.close()
     if station != -1:

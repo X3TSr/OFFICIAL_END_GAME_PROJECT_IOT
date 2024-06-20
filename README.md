@@ -21,3 +21,12 @@
 - 4
 ## Motor - Input 4 (forwards)
 - 3
+
+# Track
+Order of the trash bins is as follows: Papier/Karton, PMD, Rest
+Make sure the side button is pointing at the half circles with the trashbin names on it.
+Position the trash labels aligned with the left side of the bin underneath.
+
+# Usage:
+Startfile: Start.py
+When started press the startbutton to start sorting trash :)
